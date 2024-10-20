@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dự đoán Rượu Vang</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+
+<body>
+    <h2>Dự đoán chất lượng rượu vang</h2>
+    <form method="POST" action="/predict">
+        {% for i in range(feature_names|length) %}
+        <label for="input{{i}}">{{ feature_names[i] }}:</label>
+        <input type="text" name="input{{i}}" required><br>
+        {% endfor %}
+        <button type="submit">Dự đoán</button>
+    </form>
+
+    {% if prediction %}
+    <h3>{{ prediction }}</h3>
+    <p>{{ confidence }}</p>
+    {% endif %}
+</body>
+
+</html>
